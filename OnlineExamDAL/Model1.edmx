@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OnlineExamModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="password" Type="numeric" Precision="30" Scale="0" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Question_id" />
+          </Key>
+          <Property Name="Question_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question_Desc" Type="nvarchar" MaxLength="50" />
+          <Property Name="choice1" Type="nchar" MaxLength="10" />
+          <Property Name="choice2" Type="nchar" MaxLength="10" />
+          <Property Name="choice3" Type="nchar" MaxLength="10" />
+          <Property Name="choice4" Type="nchar" MaxLength="10" />
+          <Property Name="correctAnswer" Type="nchar" MaxLength="10" />
+          <Property Name="Subject_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Register">
+          <Key>
+            <PropertyRef Name="Registration_id" />
+          </Key>
+          <Property Name="Registration_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Phone_no" Type="int" />
+          <Property Name="P_Address" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject_id" Type="int" />
+          <Property Name="User_id" Type="int" />
+          <Property Name="TotalMarks" Type="float" />
+        </EntityType>
+        <EntityType Name="SubjectDetails">
+          <Key>
+            <PropertyRef Name="Subject_id" />
+          </Key>
+          <Property Name="Subject_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject_name" Type="nchar" MaxLength="10" />
+          <Property Name="Subject_Marks" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="User_id" Type="int" />
+        </EntityType>
+        <EntityContainer Name="OnlineExamModel1StoreContainer">
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Register" EntityType="Self.Register" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetails" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineExamModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Decimal" Precision="30" Scale="0" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Question_id" />
+          </Key>
+          <Property Name="Question_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="choice1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="choice2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="choice3" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="choice4" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="correctAnswer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Subject_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Register">
+          <Key>
+            <PropertyRef Name="Registration_id" />
+          </Key>
+          <Property Name="Registration_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_no" Type="Int32" />
+          <Property Name="P_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_id" Type="Int32" />
+          <Property Name="User_id" Type="Int32" />
+          <Property Name="TotalMarks" Type="Double" />
+        </EntityType>
+        <EntityType Name="SubjectDetail">
+          <Key>
+            <PropertyRef Name="Subject_id" />
+          </Key>
+          <Property Name="Subject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Subject_Marks" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="User_id" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="OnlineExamEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Registers" EntityType="Self.Register" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetail" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineExamModel1StoreContainer" CdmEntityContainer="OnlineExamEntities1">
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="OnlineExamModel1.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="OnlineExamModel1.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Question_id" ColumnName="Question_id" />
+                <ScalarProperty Name="Question_Desc" ColumnName="Question_Desc" />
+                <ScalarProperty Name="choice1" ColumnName="choice1" />
+                <ScalarProperty Name="choice2" ColumnName="choice2" />
+                <ScalarProperty Name="choice3" ColumnName="choice3" />
+                <ScalarProperty Name="choice4" ColumnName="choice4" />
+                <ScalarProperty Name="correctAnswer" ColumnName="correctAnswer" />
+                <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registers">
+            <EntityTypeMapping TypeName="OnlineExamModel1.Register">
+              <MappingFragment StoreEntitySet="Register">
+                <ScalarProperty Name="Registration_id" ColumnName="Registration_id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone_no" ColumnName="Phone_no" />
+                <ScalarProperty Name="P_Address" ColumnName="P_Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="OnlineExamModel1.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+                <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectDetails">
+            <EntityTypeMapping TypeName="OnlineExamModel1.SubjectDetail">
+              <MappingFragment StoreEntitySet="SubjectDetails">
+                <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+                <ScalarProperty Name="Subject_name" ColumnName="Subject_name" />
+                <ScalarProperty Name="Subject_Marks" ColumnName="Subject_Marks" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
