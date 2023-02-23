@@ -17,7 +17,7 @@ namespace OnlineExamDAL.CustomDAL
                 {
                     Subject_id = x.Subject_id,
                     TotalMarks = x.TotalMarks,
-                    User_id = x.User_id
+                    Registration_id = x.Registration_id
                 }).ToList();
                 return obj;
             }
@@ -29,7 +29,7 @@ namespace OnlineExamDAL.CustomDAL
                 Result ResObj = new Result()
                 {
                     Subject_id = obj.Subject_id,
-                    User_id = obj.User_id,
+                    Registration_id = obj.Registration_id,
                     TotalMarks = obj.TotalMarks
 
                 };

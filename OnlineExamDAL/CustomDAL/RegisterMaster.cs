@@ -1,4 +1,5 @@
 ﻿using OnlineExamBLL.CustomBLL;
+using OnlineExamDAL.DBContext;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace OnlineExamDAL.CustomDAL
     {
         public static List<RegisterDetail> GetRegisterdetail()
         {
-            using (var context = new OnlineExamEntities1())
+            using (var context = new OnlineExamEntities())
             {
                 List<RegisterDetail> obj = new List<RegisterDetail>();
 
@@ -16,6 +17,7 @@ namespace OnlineExamDAL.CustomDAL
 
                 obj = Data.Select(x => new RegisterDetail
                 {
+                    Registration_id=x.Registration_id,
                     UserName = x.UserName,
                     Email = x.Email,
                     Phone_no = x.Phone_no,
@@ -26,9 +28,27 @@ namespace OnlineExamDAL.CustomDAL
             }
         }
 
+        public static List<RegisterDetail> GetRegisterDetails(int Registration_id)
+        {
+            using (var context = new OnlineExamEntities())
+            {
+                List<RegisterDetail> registerDetails = new List<RegisterDetail>();
+                var data = context.Registers;
+                registerDetails = data.Select(x => new  RegisterDetail
+                {
+                    Registration_id =x.Registration_id,
+                    UserName=x.UserName,
+                    Email= x.Email,
+                    Phone_no=x.Phone_no,
+                    P_Address=x.P_Address
+                }).ToList();
+                return registerDetails;
+            }
+        }
+
         public static string AddRegister(RegisterDetail obj)
         {
-            using (var context = new OnlineExamEntities1())
+            using (var context = new OnlineExamEntities())
             {
                 Register Reobj = new Register()
                 {

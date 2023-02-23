@@ -1,14 +1,23 @@
 ﻿using OnlineExamBLL.CustomBLL;
 using OnlineExamDAL.CustomDAL;
+using OnlineExamDAL.DBContext;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace OnlineExam.Controllers
 {
-    [EnableCorsAttribute("*","*","*")]
+    [EnableCorsAttribute("*", "*", "*")]
     public class SubjectApiController : ApiController
     {
+        [HttpGet]
+
+        public List<SubjectDetails> GetSubjectDetail()
+        {
+
+            return SubjectMaster.GetSubject();
+        }
+
         [HttpPost]
         public string GetSubjectDetails(SubjectDetails Obj)
         {
@@ -16,12 +25,11 @@ namespace OnlineExam.Controllers
 
         }
 
-        [HttpGet]
-
-        public List<SubjectDetails> GetSubjectDetail()
+       
+        [HttpPut]
+        public string UpdateSubject(SubjectDetail obj)
         {
-
-            return SubjectMaster.GetSubject();
+            return SubjectMaster.EditSubject(obj);
         }
     }
 }

@@ -11,9 +11,15 @@ namespace OnlineExam.Controllers
 
         public List<RegisterDetail> GetRegister()
         {
+            
             return RegisterMaster.GetRegisterdetail();
         }
 
+        [HttpGet]
+        public List<RegisterDetail>GetRegisterDetails(int Registration_id)
+        {
+            return RegisterMaster.GetRegisterDetails(Registration_id);
+        }
 
         [HttpPost]
         public string AddRegister(RegisterDetail obj)

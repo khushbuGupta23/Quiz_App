@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineExamDAL
+namespace OnlineExamDAL.DBContext
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class SubjectDetail
+    public partial class tblQuestionTransaction
     {
-        public int Subject_id { get; set; }
-        public string Subject_name { get; set; }
-        public Nullable<decimal> Subject_Marks { get; set; }
-        public Nullable<int> User_id { get; set; }
+        public int Quiz_id { get; set; }
+        public Nullable<int> Question_id { get; set; }
+        public Nullable<int> Subject_id { get; set; }
+        public string SelectAnswer { get; set; }
     }
 }

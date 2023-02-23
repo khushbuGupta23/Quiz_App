@@ -7,15 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineExamDAL
+namespace OnlineExamDAL.DBContext
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Login
+    public partial class Result
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public Nullable<decimal> password { get; set; }
+        public int ResultId { get; set; }
+        public Nullable<int> Subject_id { get; set; }
+        public Nullable<int> Registration_id { get; set; }
+        public Nullable<double> TotalMarks { get; set; }
     }
 }

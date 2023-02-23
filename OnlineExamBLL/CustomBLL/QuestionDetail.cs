@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace OnlineExamBLL.CustomBLL
 {
-    class QuestionDetail
+    public class QuestionDetail
     {
-      
+        public int Question_id { get; set; }
         public string Question_Desc { get; set; }
-        public string choice1 { get; set; }
-        public string choice2 { get; set; }
-        public string choice3 { get; set; }
-        public string choice4 { get; set; }
+        public string A { get; set; }
+        public string B { get; set; }
+        public string C { get; set; }
+        public string D { get; set; }
         public string correctAnswer { get; set; }
         public Nullable<int> Subject_id { get; set; }
+        public int Quiz_id { get; set; }
+        public object Marks { get; set; }
     }
 }

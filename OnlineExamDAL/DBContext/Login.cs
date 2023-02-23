@@ -7,20 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineExamDAL
+namespace OnlineExamDAL.DBContext
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Question
+    public partial class Login
     {
-        public int Question_id { get; set; }
-        public string Question_Desc { get; set; }
-        public string choice1 { get; set; }
-        public string choice2 { get; set; }
-        public string choice3 { get; set; }
-        public string choice4 { get; set; }
-        public string correctAnswer { get; set; }
-        public Nullable<int> Subject_id { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public Nullable<decimal> password { get; set; }
     }
 }

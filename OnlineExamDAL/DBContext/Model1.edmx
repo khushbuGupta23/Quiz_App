@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineExamModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineExamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,13 +18,14 @@
             <PropertyRef Name="Question_id" />
           </Key>
           <Property Name="Question_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Question_Desc" Type="nvarchar" MaxLength="50" />
-          <Property Name="choice1" Type="nchar" MaxLength="10" />
-          <Property Name="choice2" Type="nchar" MaxLength="10" />
-          <Property Name="choice3" Type="nchar" MaxLength="10" />
-          <Property Name="choice4" Type="nchar" MaxLength="10" />
-          <Property Name="correctAnswer" Type="nchar" MaxLength="10" />
+          <Property Name="Question_Desc" Type="nvarchar" MaxLength="200" />
+          <Property Name="A" Type="nvarchar" MaxLength="200" />
+          <Property Name="B" Type="nvarchar" MaxLength="200" />
+          <Property Name="C" Type="nvarchar" MaxLength="200" />
+          <Property Name="D" Type="nvarchar" MaxLength="200" />
+          <Property Name="correctAnswer" Type="nvarchar" MaxLength="50" />
           <Property Name="Subject_id" Type="int" />
+          <Property Name="Marks" Type="int" />
         </EntityType>
         <EntityType Name="Register">
           <Key>
@@ -42,7 +43,7 @@
           </Key>
           <Property Name="ResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Subject_id" Type="int" />
-          <Property Name="User_id" Type="int" />
+          <Property Name="Registration_id" Type="int" />
           <Property Name="TotalMarks" Type="float" />
         </EntityType>
         <EntityType Name="SubjectDetails">
@@ -52,20 +53,33 @@
           <Property Name="Subject_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Subject_name" Type="nchar" MaxLength="10" />
           <Property Name="Subject_Marks" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="last_modified_user" Type="int" />
           <Property Name="User_id" Type="int" />
         </EntityType>
-        <EntityContainer Name="OnlineExamModel1StoreContainer">
+        <EntityType Name="tblQuestionTransaction">
+          <Key>
+            <PropertyRef Name="Quiz_id" />
+          </Key>
+          <Property Name="Quiz_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question_id" Type="int" />
+          <Property Name="Subject_id" Type="int" />
+          <Property Name="SelectAnswer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Get_QuestionById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Get QuestionById">
+          <Parameter Name="GetQuestionId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="OnlineExamModelStoreContainer">
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Register" EntityType="Self.Register" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblQuestionTransaction" EntityType="Self.tblQuestionTransaction" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="OnlineExamModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="OnlineExamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="Id" />
@@ -79,13 +93,14 @@
             <PropertyRef Name="Question_id" />
           </Key>
           <Property Name="Question_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Question_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="choice1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="choice2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="choice3" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="choice4" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="correctAnswer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Question_Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="A" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="B" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="C" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="D" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="correctAnswer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Subject_id" Type="Int32" />
+          <Property Name="Marks" Type="Int32" />
         </EntityType>
         <EntityType Name="Register">
           <Key>
@@ -97,15 +112,6 @@
           <Property Name="Phone_no" Type="Int32" />
           <Property Name="P_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Result">
-          <Key>
-            <PropertyRef Name="ResultId" />
-          </Key>
-          <Property Name="ResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Subject_id" Type="Int32" />
-          <Property Name="User_id" Type="Int32" />
-          <Property Name="TotalMarks" Type="Double" />
-        </EntityType>
         <EntityType Name="SubjectDetail">
           <Key>
             <PropertyRef Name="Subject_id" />
@@ -113,23 +119,51 @@
           <Property Name="Subject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Subject_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Subject_Marks" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="last_modified_user" Type="Int32" />
           <Property Name="User_id" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="OnlineExamEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="tblQuestionTransaction">
+          <Key>
+            <PropertyRef Name="Quiz_id" />
+          </Key>
+          <Property Name="Quiz_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question_id" Type="Int32" />
+          <Property Name="Subject_id" Type="Int32" />
+          <Property Name="SelectAnswer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="OnlineExamEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Logins" EntityType="Self.Login" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="Registers" EntityType="Self.Register" />
-          <EntitySet Name="Results" EntityType="Self.Result" />
           <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetail" />
+          <EntitySet Name="tblQuestionTransactions" EntityType="Self.tblQuestionTransaction" />
+          <FunctionImport Name="Get_QuestionById" ReturnType="Collection(OnlineExamModel.Get_QuestionById_Result)">
+          <Parameter Name="GetQuestionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Results" EntityType="OnlineExamModel.Result" />
         </EntityContainer>
+        <ComplexType Name="Get_QuestionById_Result">
+          <Property Type="Int32" Name="Question_id" Nullable="false" />
+          <Property Type="String" Name="correctAnswer" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SelectAnswer" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_id" Type="Int32" />
+          <Property Name="Registration_id" Type="Int32" />
+          <Property Name="TotalMarks" Type="Double" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OnlineExamModel1StoreContainer" CdmEntityContainer="OnlineExamEntities1">
+        <EntityContainerMapping StorageEntityContainer="OnlineExamModelStoreContainer" CdmEntityContainer="OnlineExamEntities">
           <EntitySetMapping Name="Logins">
-            <EntityTypeMapping TypeName="OnlineExamModel1.Login">
+            <EntityTypeMapping TypeName="OnlineExamModel.Login">
               <MappingFragment StoreEntitySet="Login">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -138,21 +172,22 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="OnlineExamModel1.Question">
+            <EntityTypeMapping TypeName="OnlineExamModel.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="Question_id" ColumnName="Question_id" />
                 <ScalarProperty Name="Question_Desc" ColumnName="Question_Desc" />
-                <ScalarProperty Name="choice1" ColumnName="choice1" />
-                <ScalarProperty Name="choice2" ColumnName="choice2" />
-                <ScalarProperty Name="choice3" ColumnName="choice3" />
-                <ScalarProperty Name="choice4" ColumnName="choice4" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="D" ColumnName="D" />
                 <ScalarProperty Name="correctAnswer" ColumnName="correctAnswer" />
                 <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Registers">
-            <EntityTypeMapping TypeName="OnlineExamModel1.Register">
+            <EntityTypeMapping TypeName="OnlineExamModel.Register">
               <MappingFragment StoreEntitySet="Register">
                 <ScalarProperty Name="Registration_id" ColumnName="Registration_id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -162,23 +197,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Results">
-            <EntityTypeMapping TypeName="OnlineExamModel1.Result">
-              <MappingFragment StoreEntitySet="Result">
-                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
-                <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
-                <ScalarProperty Name="User_id" ColumnName="User_id" />
-                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SubjectDetails">
-            <EntityTypeMapping TypeName="OnlineExamModel1.SubjectDetail">
+            <EntityTypeMapping TypeName="OnlineExamModel.SubjectDetail">
               <MappingFragment StoreEntitySet="SubjectDetails">
                 <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
                 <ScalarProperty Name="Subject_name" ColumnName="Subject_name" />
                 <ScalarProperty Name="Subject_Marks" ColumnName="Subject_Marks" />
+                <ScalarProperty Name="last_modified_user" ColumnName="last_modified_user" />
                 <ScalarProperty Name="User_id" ColumnName="User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblQuestionTransactions">
+            <EntityTypeMapping TypeName="OnlineExamModel.tblQuestionTransaction">
+              <MappingFragment StoreEntitySet="tblQuestionTransaction">
+                <ScalarProperty Name="Quiz_id" ColumnName="Quiz_id" />
+                <ScalarProperty Name="Question_id" ColumnName="Question_id" />
+                <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+                <ScalarProperty Name="SelectAnswer" ColumnName="SelectAnswer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_QuestionById" FunctionName="OnlineExamModel.Store.Get_QuestionById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OnlineExamModel.Get_QuestionById_Result">
+                <ScalarProperty Name="Question_id" ColumnName="Question_id" />
+                <ScalarProperty Name="correctAnswer" ColumnName="correctAnswer" />
+                <ScalarProperty Name="SelectAnswer" ColumnName="SelectAnswer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="OnlineExamModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="Registration_id" ColumnName="Registration_id" />
+                <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

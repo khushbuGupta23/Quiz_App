@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineExamDAL
+namespace OnlineExamDAL.DBContext
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class OnlineExamEntities1 : DbContext
+    public partial class OnlineExamEntities : DbContext
     {
-        public OnlineExamEntities1()
-            : base("name=OnlineExamEntities1")
+        public OnlineExamEntities()
+            : base("name=OnlineExamEntities")
         {
         }
     
@@ -28,7 +30,17 @@ namespace OnlineExamDAL
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Register> Registers { get; set; }
-        public virtual DbSet<Result> Results { get; set; }
         public virtual DbSet<SubjectDetail> SubjectDetails { get; set; }
+        public virtual DbSet<tblQuestionTransaction> tblQuestionTransactions { get; set; }
+        public virtual DbSet<Result> Results { get; set; }
+    
+        public virtual ObjectResult<Get_QuestionById_Result> Get_QuestionById(Nullable<int> getQuestionId)
+        {
+            var getQuestionIdParameter = getQuestionId.HasValue ?
+                new ObjectParameter("GetQuestionId", getQuestionId) :
+                new ObjectParameter("GetQuestionId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_QuestionById_Result>("Get_QuestionById", getQuestionIdParameter);
+        }
     }
 }
