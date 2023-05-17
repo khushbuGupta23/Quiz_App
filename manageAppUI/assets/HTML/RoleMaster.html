@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html lang="en" >
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="author" content="">
+    <meta name="theme-color" content="#925290" />
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+    <link href="dist/css/sweetalert.css" rel="stylesheet" />
+    <title>AngularJS</title>
+
+    <style>
+        input.ng-invalid {
+            background-color: lightblue;
+        }
+
+        input.ng-valid {
+            background-color: lightpink;
+        }
+    </style>
+</head>
+<body ng-app="roleModule" ng-controller="appController">
+    <div class="left_area">
+
+
+        <h1 style="text-align:center">Role Management</h1>
+    </div>
+    <center>
+
+        <hr />
+        <div ng-init="init()">
+            <table border="1" ng-show="ShowDetail == true">
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="role in RoleList">
+                        <td>{{$index + 1}}</td>
+                        <td>{{role.Role}}</td>
+                        <td>
+
+                            <button type="button" value="update" ng-click="updatedata(role)" class="btn btn-warning">Edit</button>
+                            <button type="button" value="Delete" ng-click="DeleteEmp(role.Role_Id)" class="btn btn-danger">Delete</button>
+
+
+                        </td>
+
+                    </tr>
+            </table>
+
+        </div>
+        <div>
+            <form name="form1" novalidate>
+                <h3>Add Role</h3>
+
+                <lable>Role</lable>
+                <input type="text" name="RoleName" ng-model="role.Role" maxlength="50" required="required" />
+
+
+                <br /><br />
+
+                <input type="submit" ng-show="ShowAdd== true" value="Add Role" ng-click="Input()" ng-disabled="form1.$pristine || form1.$invalid" />
+
+                <input type="button" ng-if="role.Role_Id" value="update" ng-click="updateRole()" />
+                <input type="button" value="Back" ng-click="BackBtn()" />
+
+            </form>
+
+        </div>
+
+    </center>
+
+    <script src="../../Scripts/angular.js"></script>
+    <script src="../../Scripts/angular.min.js" type="text/javascript"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <script src="../WorkingJS/RoleMasterjs.js"></script>
+
+</body>
+  
+
+</html>

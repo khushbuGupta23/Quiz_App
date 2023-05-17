@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ApplicationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblManageUser">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsSuccess" Type="bit" />
+          <Property Name="msg" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblQuestionBank">
+          <Key>
+            <PropertyRef Name="Question_Id" />
+          </Key>
+          <Property Name="Question_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject_Id" Type="int" />
+          <Property Name="Question" Type="nchar" MaxLength="200" />
+          <Property Name="Answer1" Type="nchar" MaxLength="200" />
+          <Property Name="Answer2" Type="nchar" MaxLength="200" />
+          <Property Name="Answer3" Type="nchar" MaxLength="200" />
+          <Property Name="Answer4" Type="nchar" MaxLength="200" />
+          <Property Name="AnswerKey" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblResultRecord">
+          <Key>
+            <PropertyRef Name="Result_ID" />
+          </Key>
+          <Property Name="Result_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject_Id" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="SubjectMarks" Type="varchar" MaxLength="50" />
+          <Property Name="TestMarks" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRoleMaster">
+          <Key>
+            <PropertyRef Name="Role_Id" />
+          </Key>
+          <Property Name="Role_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblSubjectDetail">
+          <Key>
+            <PropertyRef Name="Subject_Id" />
+          </Key>
+          <Property Name="Subject_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectName" Type="nchar" MaxLength="50" />
+          <Property Name="SubjectMarks" Type="nchar" MaxLength="50" />
+          <Property Name="TotalQues" Type="nchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="TestCode" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblUserAnswer">
+          <Key>
+            <PropertyRef Name="ST_Id" />
+          </Key>
+          <Property Name="ST_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject_Id" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Question_Id" Type="int" />
+          <Property Name="AnswerGiven" Type="varchar" MaxLength="50" />
+          <Property Name="CorrectAnswer" Type="varchar" MaxLength="50" />
+          <Property Name="IsAnswerCorrect" Type="bit" />
+          <Property Name="TestMarks" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <Function Name="SP_GetResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Subject_ID" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetResultByUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_GetRoleById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Role_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetStudentTestDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Subject_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetUserDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetUserNameDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_Questionbank_Detail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Subject_Id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ApplicationDBModelStoreContainer">
+          <EntitySet Name="tblManageUser" EntityType="Self.tblManageUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblQuestionBank" EntityType="Self.tblQuestionBank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblResultRecord" EntityType="Self.tblResultRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoleMaster" EntityType="Self.tblRoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubjectDetail" EntityType="Self.tblSubjectDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserAnswer" EntityType="Self.tblUserAnswer" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ApplicationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblManageUser">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsSuccess" Type="Boolean" />
+          <Property Name="msg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblQuestionBank">
+          <Key>
+            <PropertyRef Name="Question_Id" />
+          </Key>
+          <Property Name="Question_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_Id" Type="Int32" />
+          <Property Name="Question" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Answer1" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Answer2" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Answer3" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Answer4" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="AnswerKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblResultRecord">
+          <Key>
+            <PropertyRef Name="Result_ID" />
+          </Key>
+          <Property Name="Result_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_Id" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="SubjectMarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TestMarks" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblRoleMaster">
+          <Key>
+            <PropertyRef Name="Role_Id" />
+          </Key>
+          <Property Name="Role_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblSubjectDetail">
+          <Key>
+            <PropertyRef Name="Subject_Id" />
+          </Key>
+          <Property Name="Subject_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="SubjectMarks" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="TotalQues" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="TestCode" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblUserAnswer">
+          <Key>
+            <PropertyRef Name="ST_Id" />
+          </Key>
+          <Property Name="ST_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_Id" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Question_Id" Type="Int32" />
+          <Property Name="AnswerGiven" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorrectAnswer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsAnswerCorrect" Type="Boolean" />
+          <Property Name="TestMarks" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ApplicationDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblManageUsers" EntityType="Self.tblManageUser" />
+          <EntitySet Name="tblQuestionBanks" EntityType="Self.tblQuestionBank" />
+          <EntitySet Name="tblResultRecords" EntityType="Self.tblResultRecord" />
+          <EntitySet Name="tblRoleMasters" EntityType="Self.tblRoleMaster" />
+          <EntitySet Name="tblSubjectDetails" EntityType="Self.tblSubjectDetail" />
+          <EntitySet Name="tblUserAnswers" EntityType="Self.tblUserAnswer" />
+          <FunctionImport Name="SP_GetResult" ReturnType="Collection(ApplicationDBModel.SP_GetResult_Result)">
+            <Parameter Name="Subject_ID" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_GetRoleById" ReturnType="Collection(ApplicationDBModel.Sp_GetRoleById_Result)">
+          <Parameter Name="Role_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetStudentTestDetails" ReturnType="Collection(ApplicationDBModel.sp_GetStudentTestDetails_Result)">
+          <Parameter Name="Subject_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetUserDetail" ReturnType="Collection(ApplicationDBModel.SP_GetUserDetail_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetUserNameDetail" ReturnType="Collection(ApplicationDBModel.SP_GetUserNameDetail_Result)">
+          <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_Questionbank_Detail" ReturnType="Collection(ApplicationDBModel.Sp_Questionbank_Detail_Result)">
+          <Parameter Name="Subject_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetResultByUserName" ReturnType="Collection(ApplicationDBModel.SP_GetResultByUserName_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_GetResult_Result">
+          <Property Type="Int32" Name="Subject_Id" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SubjectMarks" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="TestMarks" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_GetRoleById_Result">
+          <Property Type="Int32" Name="Role_Id" Nullable="false" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="User_Id" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetStudentTestDetails_Result">
+          <Property Type="Int32" Name="Subject_Id" Nullable="false" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TotalQues" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="SubjectMarks" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetUserDetail_Result">
+          <Property Type="Int32" Name="User_Id" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetUserNameDetail_Result">
+          <Property Type="Int32" Name="User_Id" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Role1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_Questionbank_Detail_Result">
+          <Property Type="Int32" Name="Question_Id" Nullable="false" />
+          <Property Type="Int32" Name="Subject_Id" Nullable="true" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Question" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Answer1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Answer2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Answer3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Answer4" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AnswerKey" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_GetResultByUserName_Result">
+          <Property Type="Int32" Name="Subject_Id" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SubjectMarks" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="TestMarks" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ApplicationDBModelStoreContainer" CdmEntityContainer="ApplicationDBEntities">
+          <EntitySetMapping Name="tblManageUsers">
+            <EntityTypeMapping TypeName="ApplicationDBModel.tblManageUser">
+              <MappingFragment StoreEntitySet="tblManageUser">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblQuestionBanks">
+            <EntityTypeMapping TypeName="ApplicationDBModel.tblQuestionBank">
+              <MappingFragment StoreEntitySet="tblQuestionBank">
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="Answer4" ColumnName="Answer4" />
+                <ScalarProperty Name="AnswerKey" ColumnName="AnswerKey" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblResultRecords">
+            <EntityTypeMapping TypeName="ApplicationDBModel.tblResultRecord">
+              <MappingFragment StoreEntitySet="tblResultRecord">
+                <ScalarProperty Name="Result_ID" ColumnName="Result_ID" />
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="SubjectMarks" ColumnName="SubjectMarks" />
+                <ScalarProperty Name="TestMarks" ColumnName="TestMarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoleMasters">
+            <EntityTypeMapping TypeName="ApplicationDBModel.tblRoleMaster">
+              <MappingFragment StoreEntitySet="tblRoleMaster">
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSubjectDetails">
+            <EntityTypeMapping TypeName="ApplicationDBModel.tblSubjectDetail">
+              <MappingFragment StoreEntitySet="tblSubjectDetail">
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="SubjectMarks" ColumnName="SubjectMarks" />
+                <ScalarProperty Name="TotalQues" ColumnName="TotalQues" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="TestCode" ColumnName="TestCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserAnswers">
+            <EntityTypeMapping TypeName="ApplicationDBModel.tblUserAnswer">
+              <MappingFragment StoreEntitySet="tblUserAnswer">
+                <ScalarProperty Name="ST_Id" ColumnName="ST_Id" />
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+                <ScalarProperty Name="AnswerGiven" ColumnName="AnswerGiven" />
+                <ScalarProperty Name="CorrectAnswer" ColumnName="CorrectAnswer" />
+                <ScalarProperty Name="IsAnswerCorrect" ColumnName="IsAnswerCorrect" />
+                <ScalarProperty Name="TestMarks" ColumnName="TestMarks" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetResult" FunctionName="ApplicationDBModel.Store.SP_GetResult">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApplicationDBModel.SP_GetResult_Result">
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="SubjectMarks" ColumnName="SubjectMarks" />
+                <ScalarProperty Name="TestMarks" ColumnName="TestMarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_GetRoleById" FunctionName="ApplicationDBModel.Store.Sp_GetRoleById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApplicationDBModel.Sp_GetRoleById_Result">
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetStudentTestDetails" FunctionName="ApplicationDBModel.Store.sp_GetStudentTestDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApplicationDBModel.sp_GetStudentTestDetails_Result">
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="TotalQues" ColumnName="TotalQues" />
+                <ScalarProperty Name="SubjectMarks" ColumnName="SubjectMarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetUserDetail" FunctionName="ApplicationDBModel.Store.SP_GetUserDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApplicationDBModel.SP_GetUserDetail_Result">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetUserNameDetail" FunctionName="ApplicationDBModel.Store.SP_GetUserNameDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApplicationDBModel.SP_GetUserNameDetail_Result">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Role1" ColumnName="Role1" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Questionbank_Detail" FunctionName="ApplicationDBModel.Store.Sp_Questionbank_Detail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApplicationDBModel.Sp_Questionbank_Detail_Result">
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="Answer4" ColumnName="Answer4" />
+                <ScalarProperty Name="AnswerKey" ColumnName="AnswerKey" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetResultByUserName" FunctionName="ApplicationDBModel.Store.SP_GetResultByUserName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApplicationDBModel.SP_GetResultByUserName_Result">
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="SubjectMarks" ColumnName="SubjectMarks" />
+                <ScalarProperty Name="TestMarks" ColumnName="TestMarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

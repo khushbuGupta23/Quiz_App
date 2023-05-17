@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApplicationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblManageUser">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile_Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsSuccess" Type="bit" />
+    <Property Name="msg" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblQuestionBank">
+    <Key>
+      <PropertyRef Name="Question_Id" />
+    </Key>
+    <Property Name="Question_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject_Id" Type="int" />
+    <Property Name="Question" Type="nchar" MaxLength="200" />
+    <Property Name="Answer1" Type="nchar" MaxLength="200" />
+    <Property Name="Answer2" Type="nchar" MaxLength="200" />
+    <Property Name="Answer3" Type="nchar" MaxLength="200" />
+    <Property Name="Answer4" Type="nchar" MaxLength="200" />
+    <Property Name="AnswerKey" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblResultRecord">
+    <Key>
+      <PropertyRef Name="Result_ID" />
+    </Key>
+    <Property Name="Result_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject_Id" Type="int" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="SubjectMarks" Type="varchar" MaxLength="50" />
+    <Property Name="TestMarks" Type="int" />
+  </EntityType>
+  <EntityType Name="tblRoleMaster">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblSubjectDetail">
+    <Key>
+      <PropertyRef Name="Subject_Id" />
+    </Key>
+    <Property Name="Subject_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectName" Type="nchar" MaxLength="50" />
+    <Property Name="SubjectMarks" Type="nchar" MaxLength="50" />
+    <Property Name="TotalQues" Type="nchar" MaxLength="10" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="TestCode" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblUserAnswer">
+    <Key>
+      <PropertyRef Name="ST_Id" />
+    </Key>
+    <Property Name="ST_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject_Id" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Question_Id" Type="int" />
+    <Property Name="AnswerGiven" Type="varchar" MaxLength="50" />
+    <Property Name="CorrectAnswer" Type="varchar" MaxLength="50" />
+    <Property Name="IsAnswerCorrect" Type="bit" />
+    <Property Name="TestMarks" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <Function Name="SP_GetResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Subject_ID" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GetResultByUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Sp_GetRoleById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Role_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetStudentTestDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Subject_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GetUserDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GetUserNameDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Sp_Questionbank_Detail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Subject_Id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ApplicationDBModelStoreContainer">
+    <EntitySet Name="tblManageUser" EntityType="Self.tblManageUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblQuestionBank" EntityType="Self.tblQuestionBank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblResultRecord" EntityType="Self.tblResultRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoleMaster" EntityType="Self.tblRoleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubjectDetail" EntityType="Self.tblSubjectDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserAnswer" EntityType="Self.tblUserAnswer" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

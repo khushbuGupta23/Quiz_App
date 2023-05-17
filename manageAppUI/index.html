@@ -1,0 +1,206 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+        }
+
+        header {
+            position: fixed;
+            background: #22242A;
+            padding: 20px;
+            width: 100%;
+            height: 30px;
+        }
+
+        .left_area h3 {
+            color: #fff;
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 22px;
+            font-weight: 1000;
+        }
+
+        .left_area span {
+            color: #19B3D3;
+        }
+
+        .logout_btn {
+            padding: 2px;
+            background: #19B3D3;
+            text-decoration: none;
+            margin-top: 30px;
+            border-radius: 15px;
+            font-size: 15px;
+            text-align:center;
+            font-weight: 600;
+            color: orange;
+            transition: 0.5s;
+            transition-property: background;
+        }
+
+            .logout_btn:hover {
+                background: #0B87A6;
+            }
+
+        .sidebar {
+            background: #2f323a;
+            margin-top: 0px;
+            padding-top: 0px;
+            position: fixed;
+            left: 0;
+            width: 150px;
+            height: 100%;
+            transition: 0.5s;
+            transition-property: left;
+        }
+        .sidebar-menu{
+            margin-right:10px;
+            padding-right:inherit;
+            padding-left:3px;
+            font-size:20px;
+        }
+
+        .sidebar .profile_image {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            margin-bottom: 10px;
+        }
+
+            .sidebar a {
+                color: #fff;
+                display: block;
+                width: 100%;
+                line-height: 40px;
+                text-decoration: none;
+                padding-left: 0px;
+                font-size:15px;
+                box-sizing: border-box;
+                transition: 0.5s;
+                transition-property: background;
+            }
+
+                .sidebar a:hover {
+                    background: #19B3D3;
+                }
+
+           
+
+        label #sidebar_btn {
+            z-index: 1;
+            color: #fff;
+            position: fixed;
+            cursor: pointer;
+            left: 310px;
+            font-size: 20px;
+            margin: 5px 0;
+            transition: 0.5s;
+            transition-property: color;
+        }
+
+            label #sidebar_btn:hover {
+                color: #19B3D3;
+            }
+    </style>
+
+</head>
+<body ng-app="homeapp" ng-controller="homeController">
+
+    <aside class="main-sidebar aside_back" id="myDIV">
+        <section class="sidebar">
+            <div style="margin: 20px;font-style:oblique; color:bisque; ">
+                
+<a href="index.html"><span>DashBoard</span></a>
+                
+            </div>
+            <ul class="sidebar-menu">
+
+                <li class="li_sidemenu dropdown">
+
+                    <ul class="dropdown-menu dropdown_css">
+                        <li class="dropdown_liccs">
+                            <a class="main-nav1" href="#/Role">
+                                <p class="side_ptext1">Role Master</p>
+                            </a>
+                            <a class="main-nav1" href="#/Users">
+                                <p class="side_ptext1">User Master</p>
+                            </a>
+                            <a class="main-nav1" href="#/Subject">
+                                <p class="side_ptext1">Subject Master</p>
+                            </a>
+                            <a class="main-nav1" href="#/Result">
+                                <p class="side_ptext1">Results View</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <div class="right_area" style="margin-top: 350px; padding:20px;">
+                <a href="#/Login" class="logout_btn">Logout</a>
+            </div>
+        </section>
+    </aside>
+    <div class="content-wrapper" style="width: 81%; margin: auto; margin-left: 179px; ">
+
+         <ng-view>
+
+        </ng-view>
+    </div>
+
+    <script>
+        function myFunction() {
+            var element = document.getElementById("myDIV");
+            element.classList.toggle("mystyle");
+        }
+    </script>
+    <script src="JavaScript/AngularJS/angular.min.js"></script>
+    <script src="JavaScript/OtherJS/angular-cookies.js"></script>
+    <script src="JavaScript/AngularJS/angular-route.min.js"></script>
+    <script src="JavaScript/AngularJS/angular-animate.min.js"></script>
+    <script src="JavaScript/AngularJS/angular-sanitize.min.js"></script>
+    <script src="JavaScript/AngularJS/dirPagination.js"></script>
+    <script src="JavaScript/OtherJS/angular-morris-chart-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <script src="JavaScript/AngularJS/angular-spinner.min.js"></script>
+    <script src="JavaScript/AngularJS/angular-loading-spinner.js"></script>
+    <script src="JavaScript/AngularJS/angular-loader.min.js"></script>
+    <script src="JavaScript/AngularJS/angular-datepicker.js"></script>
+    <!--<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>-->
+    <script src="JavaScript/OtherJS/csv-download.min.js"></script>
+    <script src="JavaScript/OtherJS/ckeditor.js"></script>
+    <script src="JavaScript/OtherJS/angular-ckeditor.min.js"></script>
+    <script src="JavaScript/OtherJS/ui-bootstrap-tpls-1.3.3.min.js"></script>
+    <script src="JavaScript/OtherJS/ngStorage.min.js"></script>
+    <script src="JavaScript/OtherJS/sweetalert.min.js"></script>
+    <script src="JavaScript/OtherJS/MD5.js"></script>
+    <script src="JavaScript/OtherJS/xlsx.js"></script>
+    <script src="JavaScript/OtherJS/xlsx.full.min.js"></script>
+    <script src="JavaScript/OtherJS/spin.min.js"></script>
+    <script src="JavaScript/OtherJS/angular-spinner.min.js"></script>
+    <script src="JavaScript/OtherJS/angular-loading-spinner.js"></script>
+    <script src="JavaScript/OtherJS/Chart.js"></script>
+    <script src="JavaScript/AngularJS/angular-chart.min.js"></script>
+    <script src="JavaScript/OtherJS/alsqlUpdated.js"></script>
+    <script src="JavaScript/OtherJS/multiple-select.js"></script>
+    <script src="assets/WorkingJS/Script.js"></script>
+    <script src="assets/WorkingJS/MangeUser.js"></script>
+    <script src="assets/WorkingJS/Login.js"></script>
+    <script src="assets/WorkingJS/QuestionBank.js"></script>
+    <script src="assets/WorkingJS/RoleMasterjs.js"></script>
+    <script src="assets/WorkingJS/SubjectManage.js"></script>
+    <script src="assets/WorkingJS/Result.js"></script>
+    <script src="assets/WorkingJS/Levels.js"></script>
+    <script src="assets/WorkingJS/UserHome.js"></script>
+</body>
+</html>
+
+
