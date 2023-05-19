@@ -78,9 +78,10 @@ app.controller("appController", function ($scope, AppService, $http) {
     //update by Appservice
     $scope.updateRole = function () {
         
+        
         AppService.updateRole($scope.role).then(function (res) {
             
-            $scope.RoleList = res;
+            $scope.RoleList = res.data;
             swal($scope.RoleList);
             $scope.init();
         });

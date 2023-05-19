@@ -46,7 +46,7 @@ namespace ManageDAL.CustomDal
 
                 if (check != null)
                 {
-                    return "Duplicate Vlaue in UserName :(";
+                    return "Duplicate Vaue in UserName :(";
 
                 }
                 else
@@ -84,7 +84,7 @@ namespace ManageDAL.CustomDal
 
                 if (check != null)
                 {
-                    return "Duplicate Vlaue in UserName   :(";
+                    return "Duplicate Value in UserName   :(";
                 }
                 else
                 {

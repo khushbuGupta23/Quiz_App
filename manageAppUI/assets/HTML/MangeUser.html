@@ -6,6 +6,7 @@
     <meta name="author" content="">
     <meta name="theme-color" content="#925290" />
     <link rel="shortcut icon" href="assets/images/favicon.png">
+
     <link href="dist/css/sweetalert.css" rel="stylesheet" />
     <title>AngularJS</title>
 
@@ -72,16 +73,16 @@
                 <label>Role</label>
 
                 <select ng-required="" name="Rolename" class="form-control ng-pristine ng-valid ng-valid-required"
-                        ng-options="user.Role as user.Role  for user in Rolelist" ng-model="user.Role"></select>
+                        ng-options="user.Role as user.Role  for user in Rolelist" ng-trim="true" ng-model="user.Role"></select>
 
                 <lable>&nbsp;Mobile_Number</lable>
-                <input type="text" name="Mobile_Number" ng-model="user.Mobile_Number" maxlength="10" required="required" />
+                <input type="text" name="Mobile_Number" ng-model="user.Mobile_Number" maxlength="10" ng-trim="true" required="required" />
 
                 <lable>&nbsp;Email</lable>
-                <input type="Email" name="Email" ng-model="user.Email" maxlength="30" required="required" />
+                <input type="Email" name="Email" ng-model="user.Email" maxlength="30" ng-trim="true" required="required" />
 
                 <lable>&nbsp; &nbsp;Password</lable>
-                <input type="password" name="password" ng-model="user.Password" maxlength="6" required />
+                <input type="password" name="password" ng-model="user.Password" maxlength="6" ng-trim="true" required />
 
 
 
@@ -89,7 +90,7 @@
                 <input type="submit" ng-show="ShowAdd== true" value="AddUser" ng-click="SetUser()" ng-disabled="form1.$pristine || form1.$invalid" />
 
                 <input type="button" ng-if="user.User_Id" value="update" ng-click="UpdateUser()" />
-                <input type="button" value="Back" ng-click="BackBtn()" />
+               
             </form>
 
         </div>

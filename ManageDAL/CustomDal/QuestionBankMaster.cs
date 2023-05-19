@@ -132,7 +132,7 @@ namespace ManageDAL.CustomDal
                     context.SaveChanges();
                 }
             }
-            return "Success";
+            return " Updated Successfully";
         }
 
         public static  string EditQuestion(QuestionBankDetail obj)

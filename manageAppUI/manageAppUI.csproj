@@ -189,11 +189,12 @@
     <Content Include="assets\HTML\Levels.html" />
     <Content Include="assets\HTML\QuestionBank.html" />
     <Content Include="assets\HTML\Result.html" />
-    <Content Include="assets\WorkingJS\helperservice.js" />
+    <Content Include="assets\HTML\SignUp.html" />
     <Content Include="assets\WorkingJS\Levels.js" />
     <Content Include="assets\WorkingJS\QuestionBank.js" />
     <Content Include="assets\WorkingJS\Result.js" />
     <Content Include="assets\WorkingJS\Script.js" />
+    <Content Include="assets\WorkingJS\SignUp.js" />
     <Content Include="assets\WorkingJS\UserHome.js" />
     <Content Include="bootstrap\css\bootstrap-theme.css" />
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />

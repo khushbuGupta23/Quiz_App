@@ -77,7 +77,7 @@ namespace ManageDAL.CustomDal
                
                 if(check!= null)
                 {
-                    return "Duplicate Vlaue in RoleName :(";
+                    return "Duplicate Value in RoleName :(";
                     
                 }
                 else
@@ -106,7 +106,7 @@ namespace ManageDAL.CustomDal
                 
                 if (check != null)
                 {
-                    return "Duplicate Vlaue in RoleName   :(";
+                    return "Duplicate Value in RoleName   :(";
                 }
                 else
                 {

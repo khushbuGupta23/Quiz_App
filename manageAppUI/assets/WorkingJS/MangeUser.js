@@ -43,25 +43,25 @@ app.controller("UserController", function ($scope, UserService, $http, $rootScop
         createBy: 1,
         ModifiedBy: 2,
     };
-   $scope.init = function () {
-   $scope.submissionCompleted = false;
-   $scope.user = {
+    $scope.init = function () {
+        $scope.submissionCompleted = false;
+        $scope.user = {
             UserName: null,
             Role: null,
             Mobile_Number: null,
-            Email:null,
+            Email: null,
             Password: null,
             createBy: 1,
         };
-     UserService.GetRoleByRoleId().then(function (success) {
+        UserService.GetRoleByRoleId().then(function (success) {
             //debugger;
-         $scope.Rolelist = success.data;
-         $scope.ShowAdd = true;
-         console.log("RoleList", $scope.Rolelist); 
+            $scope.Rolelist = success.data;
+            $scope.ShowAdd = true;
+            console.log("RoleList", $scope.Rolelist);
         });
 
-     //GetList
-     UserService.GetUser().then(function (response) {
+        //GetList
+        UserService.GetUser().then(function (response) {
             console.log("res", response);
             if (response.data.length > 0) {
                 $scope.ShowDetail = true;
@@ -72,7 +72,7 @@ app.controller("UserController", function ($scope, UserService, $http, $rootScop
                 swal("No Records !");
             }
         });
-       console.log("Username", $scope.user.UserName);
+        console.log("Username", $scope.user.UserName);
 
     }
 
@@ -92,11 +92,10 @@ app.controller("UserController", function ($scope, UserService, $http, $rootScop
     //update by Appservice
     $scope.UpdateUser = function () {
         UserService.UpdateUser($scope.user).then(function (res) {
-            
+            debugger;
+            $scope.UserList = res.data;
+            swal($scope.UserList);
             $scope.init();
-            console.log(res.data);
-            $scope.UserList = res;
-            Swal($scope.UserList);
         });
     }
 
@@ -104,9 +103,6 @@ app.controller("UserController", function ($scope, UserService, $http, $rootScop
     $scope.updatedata = function (user) {
         $scope.ShowAdd = false;
         $scope.user = user;
-    };
-    $scope.BackBtn = function () {
-        window.location.href = "#/Users/";
     };
     //delete
     $scope.DeleteUser = function (UserId) {

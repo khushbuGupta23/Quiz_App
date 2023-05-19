@@ -58,6 +58,10 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
             templateUrl: "assets/HTML/Result.html",
             controller: "ResultController"
         })
+        //.when("/SignUp", {
+        //    templateUrl: "assets/HTML/SignUp.html",
+        //    controller: "SignUpController"
+        //})
        
         .otherwise({
             redirectTo: "/"

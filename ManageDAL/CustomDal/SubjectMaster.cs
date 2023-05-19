@@ -76,7 +76,7 @@ namespace ManageDAL.CustomDal
 
                 if (check != null)
                 {
-                    return "Duplicate Vlaue in Subject Name :(";
+                    return "Duplicate Value in Subject Name :(";
                 }
                 else
                 {
@@ -128,7 +128,7 @@ namespace ManageDAL.CustomDal
                     }
                 }
             }
-            return "Subject Update SUCESSFULLY";
+            return "Subject Updated Successfully";
         }
 
 
@@ -141,7 +141,7 @@ namespace ManageDAL.CustomDal
                 context.SaveChanges();
             }
 
-            return "delete Sucessfully :|";
+            return "deleted Sucessfully :|";
         }
 
     }
