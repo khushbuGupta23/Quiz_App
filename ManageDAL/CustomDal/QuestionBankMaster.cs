@@ -2,6 +2,8 @@
 using ManageDAL.ContextDB;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +93,51 @@ namespace ManageDAL.CustomDal
                 }
             }
             return "Success";
+        }
+
+        public static Response UploadList(DataTable dt)
+        {
+            using (var context = new ApplicationDBEntities())
+            {
+                string Msg = string.Empty;
+              
+                        List<string> Error = new List<string>();
+                //List<Shiptoparty> uploadedExcel = new List<Shiptoparty>();
+                if (dt.Rows.Count != 0)
+                {
+
+                    //using (SqlBulkCopy sbc = new SqlBulkCopy("data source=DESKTOP-686H1T8;initial catalog=ApplicationDBEntities;", SqlBulkCopyOptions.KeepIdentity))
+                    using (SqlBulkCopy sbc = new SqlBulkCopy(@"data source=.\SQLEXPRESS;Initial catalog=ApplicationDB; Integrated Security=True"))
+                    {
+                        {
+                            sbc.DestinationTableName = "dbo.tblQuestionBank";
+                            // Number of records to be processed in one go
+                            sbc.BatchSize = dt.Rows.Count;
+                            sbc.BulkCopyTimeout = 0;
+                            // Add your column mappings here
+                            sbc.ColumnMappings.Add(dt.Columns[0].ColumnName, "Subject_Id");
+                            sbc.ColumnMappings.Add(dt.Columns[1].ColumnName, "Question");
+                            sbc.ColumnMappings.Add(dt.Columns[2].ColumnName, "Answer1");
+                            sbc.ColumnMappings.Add(dt.Columns[3].ColumnName, "Answer2");
+                            sbc.ColumnMappings.Add(dt.Columns[4].ColumnName, "Answer3");
+                            sbc.ColumnMappings.Add(dt.Columns[5].ColumnName, "Answer4");
+                            sbc.ColumnMappings.Add(dt.Columns[6].ColumnName, "AnswerKey");
+                            sbc.ColumnMappings.Add(dt.Columns[7].ColumnName, "CreatedBy");
+
+
+                            // Finally write to server
+                            sbc.WriteToServer(dt);
+                        }
+                    }
+                    return new Response {  Message = "Success" };
+                }
+                else
+                {
+
+                    return new Response {  Message = "You are Uploading Empty Excel!" };
+
+                }
+            }
         }
 
         public static string AddQuestion(QuestionBankDetail obj)

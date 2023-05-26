@@ -47,6 +47,15 @@ namespace ManageDAL.ContextDB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetResult_Result>("SP_GetResult", subject_IDParameter, userNameParameter);
         }
     
+        public virtual ObjectResult<SP_GetResultByUserName_Result> SP_GetResultByUserName(string userName)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetResultByUserName_Result>("SP_GetResultByUserName", userNameParameter);
+        }
+    
         public virtual ObjectResult<Sp_GetRoleById_Result> Sp_GetRoleById(Nullable<int> role_Id)
         {
             var role_IdParameter = role_Id.HasValue ?
@@ -94,15 +103,6 @@ namespace ManageDAL.ContextDB
                 new ObjectParameter("Subject_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_Questionbank_Detail_Result>("Sp_Questionbank_Detail", subject_IdParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetResultByUserName_Result> SP_GetResultByUserName(string userName)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("UserName", userName) :
-                new ObjectParameter("UserName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetResultByUserName_Result>("SP_GetResultByUserName", userNameParameter);
         }
     }
 }

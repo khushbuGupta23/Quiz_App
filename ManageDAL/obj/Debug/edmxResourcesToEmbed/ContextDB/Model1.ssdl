@@ -24,12 +24,12 @@
     </Key>
     <Property Name="Question_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Subject_Id" Type="int" />
-    <Property Name="Question" Type="nchar" MaxLength="200" />
-    <Property Name="Answer1" Type="nchar" MaxLength="200" />
-    <Property Name="Answer2" Type="nchar" MaxLength="200" />
-    <Property Name="Answer3" Type="nchar" MaxLength="200" />
-    <Property Name="Answer4" Type="nchar" MaxLength="200" />
-    <Property Name="AnswerKey" Type="varchar" MaxLength="50" />
+    <Property Name="Question" Type="nvarchar" MaxLength="100" />
+    <Property Name="Answer1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Answer2" Type="nvarchar" MaxLength="100" />
+    <Property Name="Answer3" Type="nvarchar" MaxLength="100" />
+    <Property Name="Answer4" Type="nvarchar" MaxLength="100" />
+    <Property Name="AnswerKey" Type="nvarchar" MaxLength="100" />
     <Property Name="IsActive" Type="bit" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreationDate" Type="datetime" />

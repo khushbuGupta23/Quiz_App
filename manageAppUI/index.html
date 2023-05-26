@@ -1,10 +1,15 @@
 ﻿
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html ng-app="homeapp" ng-controller="homeController">
 <head>
     <meta charset="utf-8">
     <title>Dashboard Template</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link href="dist/css/sweetalert.css" rel="stylesheet" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -39,7 +44,7 @@
             margin-top: 30px;
             border-radius: 15px;
             font-size: 15px;
-            text-align:center;
+            text-align: center;
             font-weight: 600;
             color: orange;
             transition: 0.5s;
@@ -56,16 +61,17 @@
             padding-top: 0px;
             position: fixed;
             left: 0;
-            width: 150px;
+            width: 180px;
             height: 100%;
             transition: 0.5s;
             transition-property: left;
         }
-        .sidebar-menu{
-            margin-right:10px;
-            padding-right:inherit;
-            padding-left:3px;
-            font-size:20px;
+
+        .sidebar-menu {
+            margin-right: 10px;
+            padding-right: inherit;
+            padding-left: 3px;
+            font-size: 20px;
         }
 
         .sidebar .profile_image {
@@ -75,24 +81,24 @@
             margin-bottom: 10px;
         }
 
-            .sidebar a {
-                color: #fff;
-                display: block;
-                width: 100%;
-                line-height: 40px;
-                text-decoration: none;
-                padding-left: 0px;
-                font-size:15px;
-                box-sizing: border-box;
-                transition: 0.5s;
-                transition-property: background;
+        .sidebar a {
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            text-decoration: none;
+            padding-left: 0px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: 0.5s;
+            transition-property: background;
+        }
+
+            .sidebar a:hover {
+                background: #19B3D3;
             }
 
-                .sidebar a:hover {
-                    background: #19B3D3;
-                }
 
-           
 
         label #sidebar_btn {
             z-index: 1;
@@ -112,14 +118,14 @@
     </style>
 
 </head>
-<body ng-app="homeapp" ng-controller="homeController">
+<body >
 
     <aside class="main-sidebar aside_back" id="myDIV">
         <section class="sidebar">
             <div style="margin: 20px;font-style:oblique; color:bisque; ">
-                
-<a href="index.html"><span>DashBoard</span></a>
-                
+
+                <a href="index.html"><span>DashBoard</span></a>
+
             </div>
             <ul class="sidebar-menu">
 
@@ -128,8 +134,11 @@
                     <ul class="dropdown-menu dropdown_css">
                         <li class="dropdown_liccs">
                             <a class="main-nav1" href="#/Role">
+
+
                                 <p class="side_ptext1">Role Master</p>
                             </a>
+                          
                             <a class="main-nav1" href="#/Users">
                                 <p class="side_ptext1">User Master</p>
                             </a>
@@ -138,6 +147,9 @@
                             </a>
                             <a class="main-nav1" href="#/Result">
                                 <p class="side_ptext1">Results View</p>
+                            </a>
+                            <a class="main-nav1" href="#/UploadBulk">
+                                <p class="side_ptext1">Upload Excel </p>
                             </a>
                         </li>
                     </ul>
@@ -151,7 +163,7 @@
     </aside>
     <div class="content-wrapper" style="width: 81%; margin: auto; margin-left: 179px; ">
 
-         <ng-view>
+        <ng-view>
 
         </ng-view>
     </div>
@@ -169,12 +181,10 @@
     <script src="JavaScript/AngularJS/angular-sanitize.min.js"></script>
     <script src="JavaScript/AngularJS/dirPagination.js"></script>
     <script src="JavaScript/OtherJS/angular-morris-chart-min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
     <script src="JavaScript/AngularJS/angular-spinner.min.js"></script>
     <script src="JavaScript/AngularJS/angular-loading-spinner.js"></script>
     <script src="JavaScript/AngularJS/angular-loader.min.js"></script>
     <script src="JavaScript/AngularJS/angular-datepicker.js"></script>
-    <!--<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>-->
     <script src="JavaScript/OtherJS/csv-download.min.js"></script>
     <script src="JavaScript/OtherJS/ckeditor.js"></script>
     <script src="JavaScript/OtherJS/angular-ckeditor.min.js"></script>
@@ -191,15 +201,15 @@
     <script src="JavaScript/AngularJS/angular-chart.min.js"></script>
     <script src="JavaScript/OtherJS/alsqlUpdated.js"></script>
     <script src="JavaScript/OtherJS/multiple-select.js"></script>
-    <script src="assets/WorkingJS/Script.js"></script>
-    <script src="assets/WorkingJS/MangeUser.js"></script>
-    <script src="assets/WorkingJS/Login.js"></script>
-    <script src="assets/WorkingJS/QuestionBank.js"></script>
-    <script src="assets/WorkingJS/RoleMasterjs.js"></script>
-    <script src="assets/WorkingJS/SubjectManage.js"></script>
-    <script src="assets/WorkingJS/Result.js"></script>
-    <script src="assets/WorkingJS/Levels.js"></script>
-    <script src="assets/WorkingJS/UserHome.js"></script>
+    <script src="WorkingJS/Script.js"></script>
+    <script src="WorkingJS/Levels.js"></script>
+    <script src="WorkingJS/Login.js"></script>
+    <script src="WorkingJS/MangeUser.js"></script>
+    <script src="WorkingJS/QuestionBank.js"></script>
+    <script src="WorkingJS/Result.js"></script>
+    <script src="WorkingJS/RoleMasterjs.js"></script>
+    <script src="WorkingJS/SubjectManage.js"></script>
+    <script src="WorkingJS/UploadRecord.js"></script>
 </body>
 </html>
 

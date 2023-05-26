@@ -26,3 +26,17 @@ C:\Users\Khushbu\source\repos\RoleMangementApp\ManageDAL\obj\Debug\ManageDAL.csp
 C:\Users\Khushbu\source\repos\RoleMangementApp\ManageDAL\obj\Debug\ManageDAL.csproj.CopyComplete
 C:\Users\Khushbu\source\repos\RoleMangementApp\ManageDAL\obj\Debug\ManageDAL.dll
 C:\Users\Khushbu\source\repos\RoleMangementApp\ManageDAL\obj\Debug\ManageDAL.pdb
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\ManageDAL.dll.config
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\ManageDAL.dll
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\ManageDAL.pdb
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\EntityFramework.dll
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\ManageBLL.dll
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\ManageBLL.pdb
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\EntityFramework.xml
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\obj\Debug\ManageDAL.csproj.AssemblyReference.cache
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\obj\Debug\ManageDAL.csproj.CoreCompileInputs.cache
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\obj\Debug\ManageDAL.csproj.CopyComplete
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\obj\Debug\ManageDAL.dll
+C:\Users\Khushbu\source\repos\Quiz_App With AngularJs\ManageDAL\obj\Debug\ManageDAL.pdb

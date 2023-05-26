@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\manageAppUI",
+    "\\manageAppUI\\WorkingJS"
   ],
-  "SelectedNode": "\\manageAppUI.sln",
+  "SelectedNode": "\\manageAppUI\\WorkingJS\\Result.js",
   "PreviewInSolutionExplorer": false
 }

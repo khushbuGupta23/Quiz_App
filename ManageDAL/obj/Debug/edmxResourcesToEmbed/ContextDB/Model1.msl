@@ -112,6 +112,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetResultByUserName" FunctionName="ApplicationDBModel.Store.SP_GetResultByUserName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApplicationDBModel.SP_GetResultByUserName_Result">
+          <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="SubjectMarks" ColumnName="SubjectMarks" />
+          <ScalarProperty Name="TestMarks" ColumnName="TestMarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Sp_GetRoleById" FunctionName="ApplicationDBModel.Store.Sp_GetRoleById">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ApplicationDBModel.Sp_GetRoleById_Result">
@@ -175,18 +187,6 @@
           <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_GetResultByUserName" FunctionName="ApplicationDBModel.Store.SP_GetResultByUserName">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ApplicationDBModel.SP_GetResultByUserName_Result">
-          <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
-          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-          <ScalarProperty Name="SubjectMarks" ColumnName="SubjectMarks" />
-          <ScalarProperty Name="TestMarks" ColumnName="TestMarks" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

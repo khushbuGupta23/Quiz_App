@@ -24,12 +24,12 @@
     </Key>
     <Property Name="Question_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Subject_Id" Type="Int32" />
-    <Property Name="Question" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-    <Property Name="Answer1" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-    <Property Name="Answer2" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-    <Property Name="Answer3" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-    <Property Name="Answer4" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-    <Property Name="AnswerKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Question" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Answer1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Answer2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Answer3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Answer4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AnswerKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="CreatedBy" Type="Int32" />
     <Property Name="CreationDate" Type="DateTime" Precision="3" />
@@ -104,6 +104,9 @@
       <Parameter Name="Subject_ID" Mode="In" Type="Int32" />
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="SP_GetResultByUserName" ReturnType="Collection(ApplicationDBModel.SP_GetResultByUserName_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="Sp_GetRoleById" ReturnType="Collection(ApplicationDBModel.Sp_GetRoleById_Result)">
       <Parameter Name="Role_Id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -120,11 +123,16 @@
     <FunctionImport Name="Sp_Questionbank_Detail" ReturnType="Collection(ApplicationDBModel.Sp_Questionbank_Detail_Result)">
       <Parameter Name="Subject_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="SP_GetResultByUserName" ReturnType="Collection(ApplicationDBModel.SP_GetResultByUserName_Result)">
-      <Parameter Name="UserName" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_GetResult_Result">
+    <Property Type="Int32" Name="Subject_Id" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SubjectMarks" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="TestMarks" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GetResultByUserName_Result">
     <Property Type="Int32" Name="Subject_Id" Nullable="true" />
     <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
@@ -166,24 +174,16 @@
     <Property Type="Int32" Name="Question_Id" Nullable="false" />
     <Property Type="Int32" Name="Subject_Id" Nullable="true" />
     <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Question" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="Answer1" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="Answer2" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="Answer3" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="Answer4" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="AnswerKey" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Question" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Answer1" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Answer2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Answer3" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Answer4" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="AnswerKey" Nullable="true" MaxLength="100" />
     <Property Type="Boolean" Name="IsActive" Nullable="true" />
     <Property Type="Int32" Name="CreatedBy" Nullable="true" />
     <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
     <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="SP_GetResultByUserName_Result">
-    <Property Type="Int32" Name="Subject_Id" Nullable="true" />
-    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
-    <Property Type="String" Name="SubjectMarks" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="TestMarks" Nullable="true" />
   </ComplexType>
 </Schema>

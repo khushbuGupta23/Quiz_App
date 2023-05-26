@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="CustomDal\MangeUserMaster.cs" />
     <Compile Include="CustomDal\QuestionBankMaster.cs" />
+    <Compile Include="CustomDal\Response.cs" />
     <Compile Include="CustomDal\ResultMaster.cs" />
     <Compile Include="CustomDal\RoleMasterDAL.cs" />
     <Compile Include="CustomDal\SubjectMaster.cs" />

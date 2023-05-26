@@ -52,6 +52,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=6.2.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.2.4\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
     </Reference>
@@ -59,10 +68,20 @@
       <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -185,17 +204,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="assets\CSS\Login.css" />
-    <Content Include="assets\HTML\Levels.html" />
-    <Content Include="assets\HTML\QuestionBank.html" />
-    <Content Include="assets\HTML\Result.html" />
-    <Content Include="assets\HTML\SignUp.html" />
-    <Content Include="assets\WorkingJS\Levels.js" />
-    <Content Include="assets\WorkingJS\QuestionBank.js" />
-    <Content Include="assets\WorkingJS\Result.js" />
-    <Content Include="assets\WorkingJS\Script.js" />
-    <Content Include="assets\WorkingJS\SignUp.js" />
-    <Content Include="assets\WorkingJS\UserHome.js" />
+    <Content Include="HTML\Levels.html" />
+    <Content Include="HTML\QuestionBank.html" />
+    <Content Include="HTML\Result.html" />
+    <Content Include="HTML\SignUp.html" />
+    <Content Include="HTML\UploadRecord.html" />
+    <Content Include="WorkingJS\Levels.js" />
+    <Content Include="WorkingJS\QuestionBank.js" />
+    <Content Include="WorkingJS\Result.js" />
+    <Content Include="WorkingJS\Script.js" />
+    <Content Include="WorkingJS\SignUp.js" />
+    <Content Include="WorkingJS\UploadRecord.js" />
+    <Content Include="WorkingJS\UserHome.js" />
     <Content Include="bootstrap\css\bootstrap-theme.css" />
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -222,13 +242,13 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="index.html" />
     <Content Include="Login.html" />
-    <Content Include="assets\HTML\MangeUser.html" />
-    <Content Include="assets\HTML\SubjectManage.html" />
-    <Content Include="assets\WorkingJS\Login.js" />
-    <Content Include="assets\WorkingJS\MangeUser.js" />
+    <Content Include="HTML\MangeUser.html" />
+    <Content Include="HTML\SubjectManage.html" />
+    <Content Include="WorkingJS\Login.js" />
+    <Content Include="WorkingJS\MangeUser.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="assets\HTML\RoleMaster.html" />
+    <Content Include="HTML\RoleMaster.html" />
     <Content Include="JavaScript\AngularJS\angular-animate.min.js" />
     <Content Include="JavaScript\AngularJS\angular-chart.min.js" />
     <Content Include="JavaScript\AngularJS\angular-datepicker.js" />
@@ -1076,7 +1096,7 @@
     <Content Include="Scripts\test-bundles\angular-route.js" />
     <Content Include="Scripts\test-bundles\angular-sanitize.js" />
     <Content Include="Scripts\test-bundles\angular-touch.js" />
-    <Content Include="assets\WorkingJS\RoleMasterjs.js" />
+    <Content Include="WorkingJS\RoleMasterjs.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -1090,7 +1110,7 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="assets\WorkingJS\SubjectManage.js" />
+    <Content Include="WorkingJS\SubjectManage.js" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.esm.min.js.map" />
